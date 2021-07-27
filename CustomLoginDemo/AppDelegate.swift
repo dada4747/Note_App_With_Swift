@@ -6,17 +6,57 @@
 //
 
 import UIKit
+import Firebase
 import CoreData
+import FBSDKCoreKit
+import GoogleSignIn
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        ApplicationDelegate.shared.application(
+                    application,
+                    didFinishLaunchingWithOptions: launchOptions
+                )
+        
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                      // Show the app's signed-out state.
+            } else {
+                      // Show the app's signed-in state.
+            }
+        }
         return true
     }
+    
+    func application(
+           _ app: UIApplication,
+           open url: URL,
+           options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+       ) -> Bool {
+        var flage: Bool = false
+           if ApplicationDelegate.shared.application(
+               app,
+               open: url,
+               sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+               annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+           ){
+            flage = ApplicationDelegate.shared.application(
+                app,
+                open: url,
+                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+            
+           } else {
+            flage = GIDSignIn.sharedInstance.handle(url)
+           }
+        return flage
+       }  
 
     // MARK: UISceneSession Lifecycle
 
@@ -30,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+        
+        
     }
 
     // MARK: - Core Data stack
@@ -76,6 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+
 
 }
 
