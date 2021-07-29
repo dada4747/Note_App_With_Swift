@@ -13,8 +13,13 @@
 		D4AB9A0526AD8A0A00AE6BC9 /* ToDoListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0426AD8A0A00AE6BC9 /* ToDoListItem+CoreDataProperties.swift */; };
 		D4AB9A0726AD940700AE6BC9 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0626AD940700AE6BC9 /* AddNoteViewController.swift */; };
 		D4AB9A0926AD942300AE6BC9 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0826AD942300AE6BC9 /* UpdateViewController.swift */; };
-		D4AB9A0B26AED36A00AE6BC9 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0A26AED36A00AE6BC9 /* CoreData.swift */; };
-		D4AB9A0D26AEDE9500AE6BC9 /* NoteFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0C26AEDE9500AE6BC9 /* NoteFireStore.swift */; };
+		D4AB9A0B26AED36A00AE6BC9 /* NoteCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0A26AED36A00AE6BC9 /* NoteCoreDataService.swift */; };
+		D4AB9A0D26AEDE9500AE6BC9 /* NoteFireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0C26AEDE9500AE6BC9 /* NoteFireBaseService.swift */; };
+		D4AB9A1A26B0572900AE6BC9 /* circle2.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AB9A1826B0572900AE6BC9 /* circle2.png */; };
+		D4AB9A1B26B0572900AE6BC9 /* circle1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AB9A1926B0572900AE6BC9 /* circle1.png */; };
+		D4AB9A1D26B1165D00AE6BC9 /* NoteDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A1C26B1165D00AE6BC9 /* NoteDataModel.swift */; };
+		D4AB9A2726B1997500AE6BC9 /* signupview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4AB9A2626B1997500AE6BC9 /* signupview.jpg */; };
+		D4AB9A2926B27A9A00AE6BC9 /* DatabaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A2826B27A9A00AE6BC9 /* DatabaseLayer.swift */; };
 		D4C03B61269EB2FC002EA501 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C03B60269EB2FC002EA501 /* AppDelegate.swift */; };
 		D4C03B63269EB2FC002EA501 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C03B62269EB2FC002EA501 /* SceneDelegate.swift */; };
 		D4C03B65269EB2FC002EA501 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C03B64269EB2FC002EA501 /* ViewController.swift */; };
@@ -28,7 +33,6 @@
 		D4C03B80269F85DF002EA501 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C03B7F269F85DF002EA501 /* Utilities.swift */; };
 		D4C03B82269F95BE002EA501 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4C03B81269F95BE002EA501 /* GoogleService-Info.plist */; };
 		D4C03BC426A04E35002EA501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C03BC326A04E35002EA501 /* Constants.swift */; };
-		D4C03BC826A0886F002EA501 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BC626A0886E002EA501 /* logo.png */; };
 		D4C03BC926A0886F002EA501 /* logo1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BC726A0886F002EA501 /* logo1.png */; };
 		D4C03BCB26A088E8002EA501 /* 2863657.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BCA26A088E8002EA501 /* 2863657.jpeg */; };
 		D4C03BCF26A0A69B002EA501 /* newbg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BCE26A0A69B002EA501 /* newbg.jpg */; };
@@ -52,8 +56,13 @@
 		D4AB9A0426AD8A0A00AE6BC9 /* ToDoListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ToDoListItem+CoreDataProperties.swift"; path = "/Users/gadgetzone/Desktop/CustomLoginDemo/CustomLoginDemo/ToDoListCoreData/ToDoListItem+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		D4AB9A0626AD940700AE6BC9 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		D4AB9A0826AD942300AE6BC9 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
-		D4AB9A0A26AED36A00AE6BC9 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		D4AB9A0C26AEDE9500AE6BC9 /* NoteFireStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFireStore.swift; sourceTree = "<group>"; };
+		D4AB9A0A26AED36A00AE6BC9 /* NoteCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCoreDataService.swift; sourceTree = "<group>"; };
+		D4AB9A0C26AEDE9500AE6BC9 /* NoteFireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFireBaseService.swift; sourceTree = "<group>"; };
+		D4AB9A1826B0572900AE6BC9 /* circle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle2.png; sourceTree = "<group>"; };
+		D4AB9A1926B0572900AE6BC9 /* circle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle1.png; sourceTree = "<group>"; };
+		D4AB9A1C26B1165D00AE6BC9 /* NoteDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataModel.swift; sourceTree = "<group>"; };
+		D4AB9A2626B1997500AE6BC9 /* signupview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = signupview.jpg; sourceTree = "<group>"; };
+		D4AB9A2826B27A9A00AE6BC9 /* DatabaseLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLayer.swift; sourceTree = "<group>"; };
 		D4C03B5D269EB2FC002EA501 /* CustomLoginDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomLoginDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C03B60269EB2FC002EA501 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4C03B62269EB2FC002EA501 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +78,6 @@
 		D4C03B7F269F85DF002EA501 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D4C03B81269F95BE002EA501 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4C03BC326A04E35002EA501 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D4C03BC626A0886E002EA501 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		D4C03BC726A0886F002EA501 /* logo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo1.png; sourceTree = "<group>"; };
 		D4C03BCA26A088E8002EA501 /* 2863657.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2863657.jpeg; sourceTree = "<group>"; };
 		D4C03BCE26A0A69B002EA501 /* newbg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newbg.jpg; sourceTree = "<group>"; };
@@ -145,6 +153,9 @@
 				D4C03BC526A058F1002EA501 /* Media */,
 				D4C03B66269EB2FC002EA501 /* Main.storyboard */,
 				D4C03B6C269EB301002EA501 /* Assets.xcassets */,
+				D4AB9A2626B1997500AE6BC9 /* signupview.jpg */,
+				D4AB9A1826B0572900AE6BC9 /* circle2.png */,
+				D4AB9A1926B0572900AE6BC9 /* circle1.png */,
 				D4C03BCE26A0A69B002EA501 /* newbg.jpg */,
 				D4C03BCA26A088E8002EA501 /* 2863657.jpeg */,
 				D4C03B6E269EB301002EA501 /* LaunchScreen.storyboard */,
@@ -173,8 +184,10 @@
 				D4D163A426A83536001235A4 /* MyNoteCollectionViewCell.swift */,
 				D4AB9A0626AD940700AE6BC9 /* AddNoteViewController.swift */,
 				D4AB9A0826AD942300AE6BC9 /* UpdateViewController.swift */,
-				D4AB9A0A26AED36A00AE6BC9 /* CoreData.swift */,
-				D4AB9A0C26AEDE9500AE6BC9 /* NoteFireStore.swift */,
+				D4AB9A0A26AED36A00AE6BC9 /* NoteCoreDataService.swift */,
+				D4AB9A0C26AEDE9500AE6BC9 /* NoteFireBaseService.swift */,
+				D4AB9A1C26B1165D00AE6BC9 /* NoteDataModel.swift */,
+				D4AB9A2826B27A9A00AE6BC9 /* DatabaseLayer.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -192,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				D4C03BC726A0886F002EA501 /* logo1.png */,
-				D4C03BC626A0886E002EA501 /* logo.png */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -264,13 +276,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4AB9A1A26B0572900AE6BC9 /* circle2.png in Resources */,
 				D4C03BCF26A0A69B002EA501 /* newbg.jpg in Resources */,
 				D4C03BC926A0886F002EA501 /* logo1.png in Resources */,
+				D4AB9A2726B1997500AE6BC9 /* signupview.jpg in Resources */,
 				D4C03BCB26A088E8002EA501 /* 2863657.jpeg in Resources */,
-				D4C03BC826A0886F002EA501 /* logo.png in Resources */,
 				D4C03B70269EB301002EA501 /* LaunchScreen.storyboard in Resources */,
 				D457F33026A4A46700155778 /* GoogleService-Info-2.plist in Resources */,
 				D4C03B82269F95BE002EA501 /* GoogleService-Info.plist in Resources */,
+				D4AB9A1B26B0572900AE6BC9 /* circle1.png in Resources */,
 				D4C03B6D269EB301002EA501 /* Assets.xcassets in Resources */,
 				D4C03B68269EB2FC002EA501 /* Main.storyboard in Resources */,
 			);
@@ -328,14 +342,16 @@
 				D4C03B65269EB2FC002EA501 /* ViewController.swift in Sources */,
 				D4D1636126A5EFED001235A4 /* MenuViewController.swift in Sources */,
 				D4D1636726A6959F001235A4 /* ArchiveViewController.swift in Sources */,
-				D4AB9A0D26AEDE9500AE6BC9 /* NoteFireStore.swift in Sources */,
+				D4AB9A0D26AEDE9500AE6BC9 /* NoteFireBaseService.swift in Sources */,
 				D4C03B6B269EB2FC002EA501 /* CustomLoginDemo.xcdatamodeld in Sources */,
-				D4AB9A0B26AED36A00AE6BC9 /* CoreData.swift in Sources */,
+				D4AB9A0B26AED36A00AE6BC9 /* NoteCoreDataService.swift in Sources */,
 				D4D1636B26A695D9001235A4 /* SettingViewController.swift in Sources */,
 				D4AB9A0926AD942300AE6BC9 /* UpdateViewController.swift in Sources */,
 				D4D163A526A83536001235A4 /* MyNoteCollectionViewCell.swift in Sources */,
 				D4C03B7A269EB423002EA501 /* LogInViewController.swift in Sources */,
+				D4AB9A1D26B1165D00AE6BC9 /* NoteDataModel.swift in Sources */,
 				D4C03B61269EB2FC002EA501 /* AppDelegate.swift in Sources */,
+				D4AB9A2926B27A9A00AE6BC9 /* DatabaseLayer.swift in Sources */,
 				D4AB9A0726AD940700AE6BC9 /* AddNoteViewController.swift in Sources */,
 				D4AB9A0326AD8A0500AE6BC9 /* ToDoListItem+CoreDataClass.swift in Sources */,
 				D4C03B63269EB2FC002EA501 /* SceneDelegate.swift in Sources */,

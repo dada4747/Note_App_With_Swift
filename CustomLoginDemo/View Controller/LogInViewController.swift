@@ -25,6 +25,7 @@ class LogInViewController: UIViewController, LoginButtonDelegate {
         setUpElements()
         btnFacebook.delegate = self
         btnFacebook.permissions = ["public_profile", "email"]
+      //  self.view.backgroundColor = UIColor(patternImage: UIImage(named: "newbg.jpg")!)
 
     }
     

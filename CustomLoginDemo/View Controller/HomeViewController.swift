@@ -16,11 +16,26 @@ protocol HomeViewControllerDelegate : AnyObject {
 }
 
 class HomeViewController: UIViewController {
+    //list and grid
+    var isListView = false
+    var logout = UIBarButtonItem()
+    var listView = UIBarButtonItem()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let searchController = UISearchController(searchResultsController: nil)
-    private var models = [ToDoListItem]()
+    private var coreDataModel = [ToDoListItem]()
+    private var fireBaseModel = [NoteDataModel]()
+    
+    
+    
+    var totalPage = 1
+    var currentPage = 1
+    
+    
+    
+   // private var
     var searching = false
-    var searchedItems = [ToDoListItem]()
+//    var searchedItems = [ToDoListItem]()
+    var searchedItemsFromdb = [NoteDataModel]()
     let checkFirebaseLogin = Auth.auth().currentUser?.uid
     let checkGoogleLogin = GIDSignIn.sharedInstance.currentUser?.userID
     let checkFacebookLogin = AccessToken.current?.userID
@@ -39,44 +54,40 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NoteFireStore().userUid()
-        //****************************************************************************
         
-        print("****************************************************************************")
-        print(" this is uid \(Auth.auth().currentUser?.uid ?? "")")
+       
+        
+        
+        
+        
+        
+        print("*******************************retrive func call******************************")
         print("this is UID \(Auth.auth().currentUser?.email ?? "")")
-        //****************************************************************************
-        fetchItem()
+     //   fetchFirebaseNote()
+     //   fetchCoreDataNote()
         collectionView.reloadData()
-        //getAllItem()
         isUserLoggedIn()
         configureSearchController()
-
-        view.addSubview(collectionView)
-        collectionView.register(MyNoteCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-       // collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .gray
-      //  myCollectionView.delegate = self
-      //  myCollectionView.dataSource = self
-     //   title = "Search"
-        navigationItem.searchController = searchController
-        view.backgroundColor = .systemBackground
-        //title = "Home"
+        configureCollectionView()
+        title = "Note"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 17)!, .foregroundColor: UIColor.white]
+        navigationController?.navigationBar.barTintColor = Constants.greyColor
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .done, target: self, action: #selector(didTappedMenuButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "escape"), style: .done, target: self, action: #selector(self.logOutButtonTapped(_:)))
-
-        let button:UIButton = UIButton(frame: CGRect(x: 320, y: 770, width: 60, height: 60))
-        button.layer.cornerRadius = button.frame.width / 2
-        button.layer.masksToBounds = true
-        button.backgroundColor = .black
-        button.setTitle("Add", for: .normal)
-        button.addTarget(self, action:#selector(self.addButtonClicked), for: .touchUpInside)
-        self.view.addSubview(button)
-
+        
+         logout = UIBarButtonItem(image: UIImage(systemName: "power"), style: .done, target: self, action: #selector(self.logOutButtonTapped(_:)))
+         listView = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid.1x2"), style: .done, target: self, action: #selector(listButtonTapped))
+        navigationItem.rightBarButtonItems = [logout, listView]
+        
+        //Add Button
+        let image = UIImage(named: "circle2.png")! as UIImage
+        let addNoteButton:UIButton = UIButton(frame: CGRect(x: 320, y: 770, width: 60, height: 60))
+        addNoteButton.layer.cornerRadius = addNoteButton.frame.width / 2
+        addNoteButton.layer.masksToBounds = true
+        addNoteButton.setImage(image, for: .normal)
+        addNoteButton.addTarget(self, action:#selector(self.addButtonClicked), for: .touchUpInside)
+        self.view.addSubview(addNoteButton)
     }
-
+    
     override func viewDidLayoutSubviews() {
         super .viewDidLayoutSubviews()
         collectionView.frame = view.bounds
@@ -85,23 +96,24 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.frame = view.bounds
-        getAllItem()
+      //  fetchCoreDataNote()
+        fetchFirebaseNote()
+
         collectionView.reloadData()
-        // self.navigationController?.isNavigationBarHidden = true
     }
-    func fetchItem() {
-        CoreData.coreData.getAllItem { models in
-            print("in fetch item================================")
-            self.models = models
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+    
+    @objc func listButtonTapped() {
+        if isListView {
+            listView = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid.1x2"), style: .done, target: self, action: #selector(listButtonTapped))
+            isListView = false
+        } else {
+            listView = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .done, target: self, action: #selector(listButtonTapped))
+            isListView = true
         }
-       
+        self.navigationItem.setRightBarButtonItems([logout, listView], animated: true)
+        collectionView.reloadData()
     }
-    
-    
-    
+    //Add New Note Button
     @objc func addButtonClicked() {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -109,9 +121,7 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(addNoteVc, animated: true)
  
     }
-    
-    //Action button for logout
-    @IBAction func logOutButtonTapped(_ sender: Any) {
+    @objc func logOutButtonTapped(_ sender: Any) {
         if AccessToken.current != nil {
             let loginManager = FBSDKLoginKit.LoginManager()
             loginManager.logOut()
@@ -132,25 +142,71 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
-    //*************************************
+
+    //LogOut Button
+//    @IBAction func logOutButtonTapped(_ sender: Any) {
+//        if AccessToken.current != nil {
+//            let loginManager = FBSDKLoginKit.LoginManager()
+//            loginManager.logOut()
+//            print("Logout Successful From facebook")
+//            presentLogInScreen()
+//        } else if (GIDSignIn.sharedInstance.currentUser?.userID) != nil {
+//            GIDSignIn.sharedInstance.signOut()
+//            print("Logout Successful From Google")
+//            presentLogInScreen()
+//        } else if checkFirebaseLogin != nil {
+//            let firebaseAuth = Auth.auth()
+//            do {
+//                try firebaseAuth.signOut()
+//                    print("Logout Successful From Firebase")
+//                    presentLogInScreen()
+//            } catch let signOutError as NSError {
+//                    print("Error signing out: %@", signOutError)
+//            }
+//        }
+//    }
+    //Menu Button
     @objc func didTappedMenuButton() {
         delegate?.didTappedMenuButton()
-        
     }
-    //**************************************
     
     func configureSearchController() {
+        navigationItem.searchController = searchController
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.returnKeyType = UIReturnKeyType.done
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
         searchController.searchBar.placeholder = "search"
+        searchController.searchBar.searchTextField.textColor = .white
+    }
+    //fetch itemes from core data
+    func fetchCoreDataNote() {
+        NoteCoreDataService.coreData.getAllItem { models in
+            self.coreDataModel = models
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    func fetchFirebaseNote() {
+        DatabaseLayer.dblayerManeger.getNotes { model in
+            self.fireBaseModel = model
+            self.collectionView.reloadData()
+        }
+    }
+
+    //collectionview configuration
+    func configureCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.register(MyNoteCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = Constants.greyColor
     }
 
     func bestFrameSize() -> CGFloat {
@@ -159,59 +215,8 @@ class HomeViewController: UIViewController {
         let bestFrameSize = (frameHeight > frameWidth ) ? frameHeight : frameWidth
         return bestFrameSize
     }
-    
-    //core data functionallty
-    func getAllItem(){
-
-        do {
-            models = try context.fetch(ToDoListItem.fetchRequest())
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        } catch  {
-            //error
-        }
-    }
-    
-//    func createItems(title: String, desc: String){
-//        let newItem = ToDoListItem(context: context)
-//        newItem.title = title
-//        newItem.desc = desc
-//        do {
-//            try context.save()
-//            getAllItem()
-//            print("item is created sajlkjslkf")
-//        } catch  {
-//            print("unable to create note ")
-//        }
-//    }
-    
-    func delete(item: ToDoListItem){
-        context.delete(item)
-        do {
-            try context.save()
-            getAllItem()
-        } catch  {
-            print("item anable to delete ")
-        }
-    }
-    
-//    func updateItem(item: ToDoListItem, newtitle: String, newDesc: String) {
-//        item.title = newtitle
-//        item.desc = newDesc
-//        do {
-//            try context.save()
-//            getAllItem()
-//        } catch  {
-//            print("unable to update note")
-//        }
-//    }
-
+    //check user is login
     func isUserLoggedIn() {
-        print("user logged in from firebase ************** \(String(describing: checkFirebaseLogin)) **************")
-        print("user logged in from google ************** \(String(describing: checkGoogleLogin)) **************")
-        print("user logged in from facebook ************ \(String(describing: checkFacebookLogin)) *****************")
-        
         if checkFirebaseLogin != nil {
             checkUserLoginWithFirebase()
         } else if checkGoogleLogin != nil {
@@ -222,28 +227,26 @@ class HomeViewController: UIViewController {
             presentLogInScreen()
         }
     }
+    
     //check user is logged in with facebook
     func checkUserISLogIn() {
         if AccessToken.current == nil {
             presentLogInScreen()
         }
    }
-    
     //check user is logged in with  firebase
     func checkUserLoginWithFirebase() {
         if checkFirebaseLogin == nil {
            presentLogInScreen()
         }
     }
-    
     //check user is loggin with google
     func checkUserIsLogInWithGoogle() {
         if GIDSignIn.sharedInstance.currentUser?.userID == nil {
             presentLogInScreen()
         }
     }
-    
-    //method for navigate to the viewController 
+    //method for navigate to the Login View Controller
     func presentLogInScreen(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyBoard.instantiateViewController(withIdentifier: Constants.Storyboard.viewController) as! ViewController
@@ -251,97 +254,132 @@ class HomeViewController: UIViewController {
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
     }
+    
+    
+    
+    
+    private func fetchData(page : Int, refresh : Bool = false){
+    }
+    
+    
+    
 }
 
+//extencsion for collection view delegate and data source
 extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searching {
-            return searchedItems.count
+            //return searchItems.count
+            return searchedItemsFromdb.count
         } else {
-            return models.count
+//            return coreDataModel.count
+            return fireBaseModel.count
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyNoteCollectionViewCell
-        let thisNote: ToDoListItem!
+        //let thisNote: ToDoListItem!
+        let thisNote: NoteDataModel
         if searching {
-            thisNote = searchedItems[indexPath.row]
+            //thisNote = searchItems[indexPath.row]
+            thisNote = searchedItemsFromdb[indexPath.row]
             cell.labelTitle.text = thisNote.title
             cell.labelDetails.text = thisNote.desc
         } else {
-            thisNote = models[indexPath.row]
+            //thisNote = coreDataModel[indexPath.row]
+            thisNote = fireBaseModel[indexPath.row]
             cell.labelTitle.text = thisNote.title
             cell.labelDetails.text = thisNote.desc
         }
+        
+        if !isListView {
+            cell.layer.shadowColor = UIColor.white.cgColor
+            cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 1.0
+        } else {
+            cell.layer.shadowColor = Constants.greyColor.cgColor
+            cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 1.0
+        }
 
-        //let thisElement = colectionArr[indexPath.item]
-        let cellIndex = indexPath.item
         let closeFrameSize = bestFrameSize()
-        //cell.backgroundColor = .red
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.blue.cgColor
-        cell.contentView.layer.masksToBounds = true
-        cell.backgroundColor = UIColor.gray
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        cell.layer.shadowRadius = 2.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        cell.labelTitle.font = cell.labelTitle.font.withSize(closeFrameSize * relativeFontCellTitle)
+        cell.labelDetails.font = cell.labelDetails.font.withSize(closeFrameSize * relativeFontCellDescription)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        var selectrow: Int?
-        let item = models[indexPath.row]
-        let sheet = UIAlertController(title: "Choose Option",
-                                      message: nil,
-                                      preferredStyle: .actionSheet)
+       // var selectrow: Int?
+        let item = fireBaseModel[indexPath.row] //let item = coreDataModel[indexPath.row]
+        let sheet = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         sheet.addAction(UIAlertAction(title: "Edit Note", style: .default, handler: { _ in
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyBoard.instantiateViewController(withIdentifier: "UpdateNote") as! UpdateViewController
-            let nav = UINavigationController(rootViewController: viewController)
-            selectrow = indexPath.row
-            viewController.item = selectrow
+           // selectrow = indexPath.row
+            //viewController.item = selectrow
             viewController.myTitle = item.title
             viewController.myDesc = item.desc
+            viewController.id = item.id
             self.navigationController?.pushViewController(viewController, animated: true)
         }))
         
         sheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
-            CoreData.coreData.delete(item: item)
-            //self!.getAllItem()
-            self?.fetchItem()
-           
-            
-            //self?.delete(item: item)
-//            CoreData().delete(item: item)
-            
+            let itemId = item.id
+            print("item id from button click............\(itemId)")
+            NoteFireBaseService().deleteFromdb(item: itemId)//            NoteCoreDataService.coreData.delete(item: item)
+            self?.fetchFirebaseNote()
+//            self?.fetchCoreDataNote()
         }))
         present(sheet, animated: true, completion: nil)
     }
+    
+    
+    //*****************************************************
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("this is index path fro will display : \(indexPath)")
+        if current_page < total_page && indexPath.row == cars.count - 1 {
+                    current_page = current_page + 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                        self.fetchData(page: self.current_page)
+                    }
+                }
+    }
+
+    
+    
+    
+    
 }
 
+//extension for collectionview delegate flowlayout
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 15, left: 10, bottom: 10, right: 10)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = collectionView.bounds
         let heightVal = self.view.frame.height
         let widthVal = self.view.frame.width
-        let cellsize = (heightVal < widthVal) ?  bounds.height/2 : bounds.width/2
-        return CGSize(width: cellsize - 15   , height:  cellsize - 15  )
+        if !isListView {
+            let bounds = collectionView.bounds
+            let cellsize = (heightVal < widthVal) ?  bounds.height/2 : bounds.width/2
+            return CGSize(width: cellsize - 15   , height:  cellsize - 15  )
+        } else {
+            return CGSize(width: widthVal, height: 120)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -352,39 +390,36 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout {
         return 10
     }
 }
-
+//extension for search controller updating and search bar delegate
 extension HomeViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController)
     {
         let searchText = searchController.searchBar.text!
         if !searchText.isEmpty
         {
-            //searchText.lowercased())
             searching = true
-            searchedItems.removeAll()
-            //print("searched item\(searchedItem)")
-            for item in models
+            searchedItemsFromdb.removeAll() //searchedItems.removeAll()
+            for item in fireBaseModel //coreDataModel
             {
-                if item.title?.lowercased().contains(searchText.lowercased()) == true ||
-                    item.desc?.lowercased().contains(searchText.lowercased()) == true
+                if item.title.lowercased().contains(searchText.lowercased()) == true ||   //item.title?.lowercased().contains(searchText.lowercased()) == true ||
+                    item.desc.lowercased().contains(searchText.lowercased()) == true   //item.desc?.lowercased().contains(searchText.lowercased()) == true
                 {
-                    searchedItems.append(item)
+                    searchedItemsFromdb.append(item) // searchedItems.append(item)
                 }
             }
-            print(searchedItems)
         }
         else
         {
             searching = false
-            searchedItems.removeAll()
-            searchedItems = models
+            searchedItemsFromdb.removeAll()    // searchedItems.removeAll()
+            searchedItemsFromdb = fireBaseModel      // searchedItems = coreDataModel
         }
         collectionView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
-        searchedItems.removeAll()
+        searchedItemsFromdb.removeAll()  //searchedItems.removeAll()
         collectionView.reloadData()
     }
 }

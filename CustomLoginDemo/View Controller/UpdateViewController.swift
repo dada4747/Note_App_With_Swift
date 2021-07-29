@@ -6,13 +6,22 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseFirestore
 
 class UpdateViewController: UIViewController {
+    let greyColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var models = [ToDoListItem]()
+    private var models2 = [NoteDataModel]()
     var myTitle: String?
     var myDesc: String?
-    var item: Int?
+    //var item: Int?
+    var id: String?
+    var ref:DatabaseReference?
+    let userID = Auth.auth().currentUser?.uid
+    
 
 
     @IBOutlet weak var NewTitleLabel: UILabel!
@@ -20,21 +29,25 @@ class UpdateViewController: UIViewController {
     @IBOutlet weak var newTitleTextField: UITextField!
     @IBOutlet weak var newDescTextViewField: UITextView!
     override func viewDidLoad() {
-        //CoreData().getAllItem()
-
-        getAllItem()
+        view.backgroundColor = greyColor
+//        NoteCoreDataService.coreData.getAllItem {  coreDataModel in
+//            self.coreDataModel = coreDataModel
+//        }
+        NoteFireBaseService().fetchNoteFromdb { models2 in
+            self.models2 = models2
+        }
         newTitleTextField.text = myTitle!
         newDescTextViewField.text = myDesc!
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func updateButtonTapped(_ sender: Any) {
         let title = newTitleTextField.text!
         let desc = newDescTextViewField.text!
-        let index = models[item!]
+//        let index = coreDataModel[item!]
         print(title)
         print(desc)
-        CoreData.coreData.updateItem(item: index, newtitle: title, newDesc: desc)
+        NoteFireBaseService().updateNoteFromdb(item: id!, newtitle: title, newDesc: desc)
+//        NoteCoreDataService.coreData.updateItem(item: index, newtitle: title, newDesc: desc)
         navigationController?.popViewController(animated: true)
     }
    
@@ -42,50 +55,4 @@ class UpdateViewController: UIViewController {
         navigationController?.popViewController(animated: true)
 
     }
-    
-    
-    func getAllItem(){
-        print("this is get all function................... ")
-        do {
-            models = try context.fetch(ToDoListItem.fetchRequest())
-            DispatchQueue.main.async {
-            }
-        } catch  {
-            //error
-        }
-    }
-//
-//    func createItems(title: String, desc: String){
-//        let newItem = ToDoListItem(context: context)
-//        newItem.title = title
-//        newItem.desc = desc
-//        do {
-//            try context.save()
-//            getAllItem()
-//            print("item is created sajlkjslkf")
-//        } catch  {
-//            print("unable to create note ")
-//        }
-//    }
-    
-//    func delete(item: ToDoListItem){
-//        context.delete(item)
-//        do {
-//            try context.save()
-//            getAllItem()
-//        } catch  {
-//            print("item anable to delete ")
-//        }
-//    }
-    
-//    func updateItem(item: ToDoListItem, newtitle: String, newDesc: String) {
-//        item.title = newtitle
-//        item.desc = newDesc
-//        do {
-//            try context.save()
-//            getAllItem()
-//        } catch  {
-//            print("unable to update note")
-//        }
-//    }
-}
+ }

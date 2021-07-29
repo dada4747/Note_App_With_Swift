@@ -1,5 +1,5 @@
 //
-//  CoreData.swift
+//  NoteCoreDataService.swift
 //  CustomLoginDemo
 //
 //  Created by gadgetzone on 26/07/21.
@@ -10,10 +10,10 @@ import CoreData
 import UIKit
 
 
-class CoreData {
+class NoteCoreDataService {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var models = [ToDoListItem]()
-    static var coreData = CoreData()
+    static var coreData = NoteCoreDataService()
 
     //core data functionallty
     func getAllItem(complition: @escaping([ToDoListItem]) -> Void ){
@@ -24,7 +24,6 @@ class CoreData {
             complition(models)
 //            DispatchQueue.main.async {
 //                //self.collectionView.reloadData()
-//
 //            }
         } catch  {
             //error

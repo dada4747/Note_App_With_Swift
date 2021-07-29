@@ -25,6 +25,8 @@ class SignUpViewController: UIViewController {
         errorLabel.numberOfLines = 3
         // Do any additional setup after loading the view.
         setUpElements()
+       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "newbg.jpg")!)
+
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -33,6 +35,7 @@ class SignUpViewController: UIViewController {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().backgroundColor = .clear
         UINavigationBar.appearance().isTranslucent = true
+
         return true
     }
     
@@ -45,7 +48,7 @@ class SignUpViewController: UIViewController {
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(signUpButton)
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "2863657.jpeg")!)
+     //   self.view.backgroundColor = UIColor(patternImage: UIImage(named: "newbg.jpg")!)
     }
     
     //check the field and validate the data is correct if correct this method return nill else return error message
@@ -83,6 +86,8 @@ class SignUpViewController: UIViewController {
                     //there was an error creating the user
                     self.showError("Error creating user")
                 } else {
+                   
+                    
                     //user are created sucessfully now stored first name and last name
                     let db = Firestore.firestore()
                     db.collection("users").addDocument(data: ["firstname": firstName, "lastname": lastName, "uid": result!.user.uid]) { (error) in

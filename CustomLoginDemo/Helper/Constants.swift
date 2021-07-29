@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 struct Constants {
     struct Storyboard {
         
@@ -16,5 +17,7 @@ struct Constants {
         static let addNoteViewController = "AddNote"
         
     }
+   static let greyColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
+
 
 }
