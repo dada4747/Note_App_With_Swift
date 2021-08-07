@@ -8,7 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		CADF661634FFFF7B2431C2A1 /* Pods_CustomLoginDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754DB3D845AB156EC5110B09 /* Pods_CustomLoginDemo.framework */; };
+		D451361726B8738A004C7416 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451361626B8738A004C7416 /* AddReminderViewController.swift */; };
+		D451361A26B87682004C7416 /* remind2.png in Resources */ = {isa = PBXBuildFile; fileRef = D451361826B87682004C7416 /* remind2.png */; };
+		D451361B26B87682004C7416 /* remind1.png in Resources */ = {isa = PBXBuildFile; fileRef = D451361926B87682004C7416 /* remind1.png */; };
+		D451361D26B948F3004C7416 /* FireBaseDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451361C26B948F3004C7416 /* FireBaseDatabaseService.swift */; };
 		D457F33026A4A46700155778 /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = D457F32F26A4A46700155778 /* GoogleService-Info-2.plist */; };
+		D45CB92A26B7076400E93098 /* UpdateArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45CB92926B7076400E93098 /* UpdateArchiveViewController.swift */; };
+		D47E876226B3388000CDF13D /* LoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E876026B3388000CDF13D /* LoadingCollectionReusableView.swift */; };
+		D47E876326B3388000CDF13D /* LoadingCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47E876126B3388000CDF13D /* LoadingCollectionReusableView.xib */; };
 		D4AB9A0326AD8A0500AE6BC9 /* ToDoListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0226AD8A0500AE6BC9 /* ToDoListItem+CoreDataClass.swift */; };
 		D4AB9A0526AD8A0A00AE6BC9 /* ToDoListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0426AD8A0A00AE6BC9 /* ToDoListItem+CoreDataProperties.swift */; };
 		D4AB9A0726AD940700AE6BC9 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB9A0626AD940700AE6BC9 /* AddNoteViewController.swift */; };
@@ -36,10 +43,11 @@
 		D4C03BC926A0886F002EA501 /* logo1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BC726A0886F002EA501 /* logo1.png */; };
 		D4C03BCB26A088E8002EA501 /* 2863657.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BCA26A088E8002EA501 /* 2863657.jpeg */; };
 		D4C03BCF26A0A69B002EA501 /* newbg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4C03BCE26A0A69B002EA501 /* newbg.jpg */; };
+		D4C370CD26BC30BB00353E41 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C370CC26BC30BB00353E41 /* UserProfile.swift */; };
 		D4D1636126A5EFED001235A4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636026A5EFED001235A4 /* MenuViewController.swift */; };
 		D4D1636526A685B9001235A4 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636426A685B9001235A4 /* ReminderViewController.swift */; };
 		D4D1636726A6959F001235A4 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636626A6959F001235A4 /* ArchiveViewController.swift */; };
-		D4D1636926A695BC001235A4 /* DeletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636826A695BC001235A4 /* DeletedViewController.swift */; };
+		D4D1636926A695BC001235A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636826A695BC001235A4 /* ProfileViewController.swift */; };
 		D4D1636B26A695D9001235A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636A26A695D9001235A4 /* SettingViewController.swift */; };
 		D4D1636D26A695F7001235A4 /* HelpAndFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1636C26A695F7001235A4 /* HelpAndFeedbackViewController.swift */; };
 		D4D1638126A6D744001235A4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1638026A6D744001235A4 /* ContainerViewController.swift */; };
@@ -50,7 +58,14 @@
 		4F73B61392F488518D1A39A3 /* Pods-CustomLoginDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomLoginDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		754DB3D845AB156EC5110B09 /* Pods_CustomLoginDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomLoginDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F9B20627CEA31D2A8171A2 /* Pods-CustomLoginDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomLoginDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomLoginDemo/Pods-CustomLoginDemo.release.xcconfig"; sourceTree = "<group>"; };
+		D451361626B8738A004C7416 /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		D451361826B87682004C7416 /* remind2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remind2.png; sourceTree = "<group>"; };
+		D451361926B87682004C7416 /* remind1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remind1.png; sourceTree = "<group>"; };
+		D451361C26B948F3004C7416 /* FireBaseDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseDatabaseService.swift; sourceTree = "<group>"; };
 		D457F32F26A4A46700155778 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		D45CB92926B7076400E93098 /* UpdateArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateArchiveViewController.swift; sourceTree = "<group>"; };
+		D47E876026B3388000CDF13D /* LoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionReusableView.swift; sourceTree = "<group>"; };
+		D47E876126B3388000CDF13D /* LoadingCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCollectionReusableView.xib; sourceTree = "<group>"; };
 		D483F2D526AD84B40042038B /* CustomLoginDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CustomLoginDemo; sourceTree = "<group>"; };
 		D4AB9A0226AD8A0500AE6BC9 /* ToDoListItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDoListItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		D4AB9A0426AD8A0A00AE6BC9 /* ToDoListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ToDoListItem+CoreDataProperties.swift"; path = "/Users/gadgetzone/Desktop/CustomLoginDemo/CustomLoginDemo/ToDoListCoreData/ToDoListItem+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
@@ -81,10 +96,11 @@
 		D4C03BC726A0886F002EA501 /* logo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo1.png; sourceTree = "<group>"; };
 		D4C03BCA26A088E8002EA501 /* 2863657.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2863657.jpeg; sourceTree = "<group>"; };
 		D4C03BCE26A0A69B002EA501 /* newbg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newbg.jpg; sourceTree = "<group>"; };
+		D4C370CC26BC30BB00353E41 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		D4D1636026A5EFED001235A4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D4D1636426A685B9001235A4 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		D4D1636626A6959F001235A4 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
-		D4D1636826A695BC001235A4 /* DeletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedViewController.swift; sourceTree = "<group>"; };
+		D4D1636826A695BC001235A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D4D1636A26A695D9001235A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D4D1636C26A695F7001235A4 /* HelpAndFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackViewController.swift; sourceTree = "<group>"; };
 		D4D1638026A6D744001235A4 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +127,52 @@
 				83F9B20627CEA31D2A8171A2 /* Pods-CustomLoginDemo.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D421CED626BAB19E00068536 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D4AB9A1C26B1165D00AE6BC9 /* NoteDataModel.swift */,
+				D4C370CC26BC30BB00353E41 /* UserProfile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D421CED726BAB1D400068536 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D47E875F26B3383B00CDF13D /* LoadingReusableView */,
+				D4D163A426A83536001235A4 /* MyNoteCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D421CED826BAB28D00068536 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D4AB9A0A26AED36A00AE6BC9 /* NoteCoreDataService.swift */,
+				D4AB9A0C26AEDE9500AE6BC9 /* NoteFireBaseService.swift */,
+				D451361C26B948F3004C7416 /* FireBaseDatabaseService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D47E875F26B3383B00CDF13D /* LoadingReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				D47E876026B3388000CDF13D /* LoadingCollectionReusableView.swift */,
+				D47E876126B3388000CDF13D /* LoadingCollectionReusableView.xib */,
+			);
+			path = LoadingReusableView;
+			sourceTree = "<group>";
+		};
+		D47E876426B3B29800CDF13D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D4C03B62269EB2FC002EA501 /* SceneDelegate.swift */,
+				D4C03B60269EB2FC002EA501 /* AppDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		D4AB9A0126AD89E200AE6BC9 /* ToDoListCoreData */ = {
@@ -145,19 +207,16 @@
 		D4C03B5F269EB2FC002EA501 /* CustomLoginDemo */ = {
 			isa = PBXGroup;
 			children = (
-				D4AB9A0126AD89E200AE6BC9 /* ToDoListCoreData */,
-				D4C03B60269EB2FC002EA501 /* AppDelegate.swift */,
-				D4C03B62269EB2FC002EA501 /* SceneDelegate.swift */,
 				D4C03B7E269F85BE002EA501 /* Helper */,
-				D4C03B7D269EB475002EA501 /* View Controller */,
+				D421CED626BAB19E00068536 /* Model */,
+				D421CED726BAB1D400068536 /* View */,
+				D4C03B7D269EB475002EA501 /* Controller */,
+				D421CED826BAB28D00068536 /* Service */,
+				D4AB9A0126AD89E200AE6BC9 /* ToDoListCoreData */,
+				D47E876426B3B29800CDF13D /* App */,
 				D4C03BC526A058F1002EA501 /* Media */,
 				D4C03B66269EB2FC002EA501 /* Main.storyboard */,
 				D4C03B6C269EB301002EA501 /* Assets.xcassets */,
-				D4AB9A2626B1997500AE6BC9 /* signupview.jpg */,
-				D4AB9A1826B0572900AE6BC9 /* circle2.png */,
-				D4AB9A1926B0572900AE6BC9 /* circle1.png */,
-				D4C03BCE26A0A69B002EA501 /* newbg.jpg */,
-				D4C03BCA26A088E8002EA501 /* 2863657.jpeg */,
 				D4C03B6E269EB301002EA501 /* LaunchScreen.storyboard */,
 				D4C03B71269EB301002EA501 /* Info.plist */,
 				D457F32F26A4A46700155778 /* GoogleService-Info-2.plist */,
@@ -167,7 +226,7 @@
 			path = CustomLoginDemo;
 			sourceTree = "<group>";
 		};
-		D4C03B7D269EB475002EA501 /* View Controller */ = {
+		D4C03B7D269EB475002EA501 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				D4C03B64269EB2FC002EA501 /* ViewController.swift */,
@@ -177,19 +236,17 @@
 				D4D1636026A5EFED001235A4 /* MenuViewController.swift */,
 				D4D1636426A685B9001235A4 /* ReminderViewController.swift */,
 				D4D1636626A6959F001235A4 /* ArchiveViewController.swift */,
-				D4D1636826A695BC001235A4 /* DeletedViewController.swift */,
+				D4D1636826A695BC001235A4 /* ProfileViewController.swift */,
 				D4D1636A26A695D9001235A4 /* SettingViewController.swift */,
 				D4D1636C26A695F7001235A4 /* HelpAndFeedbackViewController.swift */,
 				D4D1638026A6D744001235A4 /* ContainerViewController.swift */,
-				D4D163A426A83536001235A4 /* MyNoteCollectionViewCell.swift */,
 				D4AB9A0626AD940700AE6BC9 /* AddNoteViewController.swift */,
 				D4AB9A0826AD942300AE6BC9 /* UpdateViewController.swift */,
-				D4AB9A0A26AED36A00AE6BC9 /* NoteCoreDataService.swift */,
-				D4AB9A0C26AEDE9500AE6BC9 /* NoteFireBaseService.swift */,
-				D4AB9A1C26B1165D00AE6BC9 /* NoteDataModel.swift */,
 				D4AB9A2826B27A9A00AE6BC9 /* DatabaseLayer.swift */,
+				D45CB92926B7076400E93098 /* UpdateArchiveViewController.swift */,
+				D451361626B8738A004C7416 /* AddReminderViewController.swift */,
 			);
-			path = "View Controller";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D4C03B7E269F85BE002EA501 /* Helper */ = {
@@ -204,6 +261,13 @@
 		D4C03BC526A058F1002EA501 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				D4C03BCA26A088E8002EA501 /* 2863657.jpeg */,
+				D4AB9A1926B0572900AE6BC9 /* circle1.png */,
+				D4AB9A1826B0572900AE6BC9 /* circle2.png */,
+				D451361826B87682004C7416 /* remind2.png */,
+				D451361926B87682004C7416 /* remind1.png */,
+				D4AB9A2626B1997500AE6BC9 /* signupview.jpg */,
+				D4C03BCE26A0A69B002EA501 /* newbg.jpg */,
 				D4C03BC726A0886F002EA501 /* logo1.png */,
 			);
 			path = Media;
@@ -286,6 +350,9 @@
 				D4C03B82269F95BE002EA501 /* GoogleService-Info.plist in Resources */,
 				D4AB9A1B26B0572900AE6BC9 /* circle1.png in Resources */,
 				D4C03B6D269EB301002EA501 /* Assets.xcassets in Resources */,
+				D451361B26B87682004C7416 /* remind1.png in Resources */,
+				D451361A26B87682004C7416 /* remind2.png in Resources */,
+				D47E876326B3388000CDF13D /* LoadingCollectionReusableView.xib in Resources */,
 				D4C03B68269EB2FC002EA501 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,7 +406,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45CB92A26B7076400E93098 /* UpdateArchiveViewController.swift in Sources */,
 				D4C03B65269EB2FC002EA501 /* ViewController.swift in Sources */,
+				D4C370CD26BC30BB00353E41 /* UserProfile.swift in Sources */,
 				D4D1636126A5EFED001235A4 /* MenuViewController.swift in Sources */,
 				D4D1636726A6959F001235A4 /* ArchiveViewController.swift in Sources */,
 				D4AB9A0D26AEDE9500AE6BC9 /* NoteFireBaseService.swift in Sources */,
@@ -350,12 +419,15 @@
 				D4D163A526A83536001235A4 /* MyNoteCollectionViewCell.swift in Sources */,
 				D4C03B7A269EB423002EA501 /* LogInViewController.swift in Sources */,
 				D4AB9A1D26B1165D00AE6BC9 /* NoteDataModel.swift in Sources */,
+				D451361726B8738A004C7416 /* AddReminderViewController.swift in Sources */,
 				D4C03B61269EB2FC002EA501 /* AppDelegate.swift in Sources */,
+				D451361D26B948F3004C7416 /* FireBaseDatabaseService.swift in Sources */,
+				D47E876226B3388000CDF13D /* LoadingCollectionReusableView.swift in Sources */,
 				D4AB9A2926B27A9A00AE6BC9 /* DatabaseLayer.swift in Sources */,
 				D4AB9A0726AD940700AE6BC9 /* AddNoteViewController.swift in Sources */,
 				D4AB9A0326AD8A0500AE6BC9 /* ToDoListItem+CoreDataClass.swift in Sources */,
 				D4C03B63269EB2FC002EA501 /* SceneDelegate.swift in Sources */,
-				D4D1636926A695BC001235A4 /* DeletedViewController.swift in Sources */,
+				D4D1636926A695BC001235A4 /* ProfileViewController.swift in Sources */,
 				D4C03B7C269EB432002EA501 /* HomeViewController.swift in Sources */,
 				D4D1638126A6D744001235A4 /* ContainerViewController.swift in Sources */,
 				D4D1636526A685B9001235A4 /* ReminderViewController.swift in Sources */,

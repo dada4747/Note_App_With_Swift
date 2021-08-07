@@ -14,6 +14,7 @@ pod 'Firebase/Firestore'
 pod 'FBSDKLoginKit'
 pod 'GoogleSignIn'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
     
 # or pod ‘Firebase/AnalyticsWithoutAdIdSupport’
 # for Analytics without IDFA collection capability

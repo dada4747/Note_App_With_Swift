@@ -22,7 +22,11 @@ class Utilities {
         
         // Remove border on text field
         textfield.borderStyle = .none
-        
+        textfield.textColor = .white
+        if let placeholder = textfield.placeholder {
+            textfield.attributedPlaceholder = NSAttributedString(string:placeholder,
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        }
         // Add the line to the text field
         textfield.layer.addSublayer(bottomLine)
         

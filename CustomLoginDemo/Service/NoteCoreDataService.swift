@@ -15,16 +15,10 @@ class NoteCoreDataService {
     private var models = [ToDoListItem]()
     static var coreData = NoteCoreDataService()
 
-    //core data functionallty
     func getAllItem(complition: @escaping([ToDoListItem]) -> Void ){
-
         do {
             models = try context.fetch(ToDoListItem.fetchRequest())
-            print("#####################################")
             complition(models)
-//            DispatchQueue.main.async {
-//                //self.collectionView.reloadData()
-//            }
         } catch  {
             //error
         }
@@ -36,8 +30,6 @@ class NoteCoreDataService {
         newItem.desc = desc
         do {
             try context.save()
-            //getAllItem()
-            print("item is created sajlkjslkf")
         } catch  {
             print("unable to create note ")
         }
@@ -47,7 +39,6 @@ class NoteCoreDataService {
         context.delete(item)
         do {
             try context.save()
-           // getAllItem()
         } catch  {
             print("item anable to delete ")
         }
@@ -58,7 +49,6 @@ class NoteCoreDataService {
         item.desc = newDesc
         do {
             try context.save()
-          //  getAllItem()
         } catch  {
             print("unable to update note")
         }

@@ -14,32 +14,31 @@ class MenuViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     weak var delegate: MenuViewControllerDelegate?
     
         enum MenuOptions: String, CaseIterable {
-        case notes = "Notes"
-        case reminders = "Reminders"
-        case archive = "Archive"
-        case deleted = "Deleted"
-        case setting = "Setting"
-        case helpFeedback = "Help And Feedback"
+        case notes          =   "Notes"
+        case reminders      =   "Reminders"
+        case archive        =   "Archive"
+        case profile        =   "Profile"
+        case setting        =   "Setting"
+        case helpFeedback   =   "Help And Feedback"
         
         var imageName: String {
             switch self {
-            
             case .notes:
                 return "note.text"
             case .reminders:
                 return "stopwatch"
             case .archive:
                 return "archivebox"
-            case .deleted:
-                return "trash"
+            case .profile:
+                return "person.crop.circle.fill"
             case .setting:
                 return "gear"
             case .helpFeedback:
                 return "questionmark.circle"
             }
-                
         }
     }
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = nil
@@ -47,14 +46,12 @@ class MenuViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         return table
     }()
 
-    let greyColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = greyColor
+        view.backgroundColor = Constants.greyColor
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,10 +69,9 @@ class MenuViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         cell.textLabel?.textColor = .white
         cell.imageView?.image = UIImage(systemName: MenuOptions.allCases[indexPath.row].imageName)
         cell.imageView?.tintColor = .white
-        cell.backgroundColor = greyColor
-        cell.contentView.backgroundColor = greyColor
+        cell.backgroundColor = Constants.greyColor
+        cell.contentView.backgroundColor = Constants.greyColor
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

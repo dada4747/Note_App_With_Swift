@@ -17,25 +17,20 @@ class UpdateViewController: UIViewController {
     private var models2 = [NoteDataModel]()
     var myTitle: String?
     var myDesc: String?
-    //var item: Int?
     var id: String?
     var ref:DatabaseReference?
     let userID = Auth.auth().currentUser?.uid
+    var isArchive: Bool?
+    var isReminder: Bool?
+    var isNote: Bool?
     
-
-
     @IBOutlet weak var NewTitleLabel: UILabel!
     @IBOutlet weak var newDescLabel: UILabel!
     @IBOutlet weak var newTitleTextField: UITextField!
     @IBOutlet weak var newDescTextViewField: UITextView!
+    
     override func viewDidLoad() {
         view.backgroundColor = greyColor
-//        NoteCoreDataService.coreData.getAllItem {  coreDataModel in
-//            self.coreDataModel = coreDataModel
-//        }
-        NoteFireBaseService().fetchNoteFromdb { models2 in
-            self.models2 = models2
-        }
         newTitleTextField.text = myTitle!
         newDescTextViewField.text = myDesc!
     }
@@ -43,16 +38,13 @@ class UpdateViewController: UIViewController {
     @IBAction func updateButtonTapped(_ sender: Any) {
         let title = newTitleTextField.text!
         let desc = newDescTextViewField.text!
-//        let index = coreDataModel[item!]
         print(title)
         print(desc)
-        NoteFireBaseService().updateNoteFromdb(item: id!, newtitle: title, newDesc: desc)
-//        NoteCoreDataService.coreData.updateItem(item: index, newtitle: title, newDesc: desc)
+        FireBaseDatabaseService.shared.updateDataToFirebase(note: id!, title: title, desc: desc, isArchive: isArchive!, isNote: isNote!, isReminder: isReminder!)
         navigationController?.popViewController(animated: true)
     }
    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-
     }
  }

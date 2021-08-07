@@ -3,6 +3,7 @@
 //  CustomLoginDemo
 //
 //  Created by gadgetzone on 20/07/21.
+
 import UIKit
 import Firebase
 import FBSDKCoreKit
@@ -14,18 +15,18 @@ class ContainerViewController: UIViewController {
         case opened
         case closed
     }
-    private var menuState: MenuState = .closed
     
+    private var menuState: MenuState = .closed
   //for sidebar.......
-    let menuVc = MenuViewController()
-    let homeVc = HomeViewController()
-    var navVc: UINavigationController?
+    let menuVc          = MenuViewController()
+    let homeVc          = HomeViewController()
     lazy var reminderVc = ReminderViewController()
-    lazy var archiveVc = ArchiveViewController()
-    lazy var deletedVc = DeletedViewController()
-    lazy var settingVc = SettingViewController()
+    lazy var archiveVc  = ArchiveViewController()
+    lazy var profileVc  = ProfileViewController()
+    lazy var settingVc  = SettingViewController()
     lazy var helpDeskVc = HelpAndFeedbackViewController()
-  
+    var navVc: UINavigationController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
        addchildVCs()
@@ -66,7 +67,6 @@ extension ContainerViewController: HomeViewControllerDelegate {
             //open it
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut){
                 self.navVc?.view.frame.origin.x = self.homeVc.view.frame.size.width - 100
-                
             } completion: { [weak self] done in
                 if done {
                     self?.menuState = .opened
@@ -76,7 +76,6 @@ extension ContainerViewController: HomeViewControllerDelegate {
             //c;lose it
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut){
                 self.navVc?.view.frame.origin.x = 0
-                
             } completion: { [weak self] done in
                 if done {
                     self?.menuState = .closed
@@ -104,9 +103,9 @@ extension ContainerViewController: MenuViewControllerDelegate {
                 print("Archive Controller")
                 //add reminder
                 self.addArchive()
-            case .deleted:
-                print("Deleted Controller")
-                self.addDeleted()
+            case .profile:
+                print("Profile Controller")
+                self.addProfile()
             case .setting:
                 print("Setting Controller")
                 self.addSetting()
@@ -121,12 +120,13 @@ extension ContainerViewController: MenuViewControllerDelegate {
         reminderVc.didMove(toParent: nil)
         homeVc.title = "Note"
         
+        
         archiveVc.view.removeFromSuperview()
         archiveVc.didMove(toParent: nil)
         homeVc.title = "Note"
         
-        deletedVc.view.removeFromSuperview()
-        deletedVc.didMove(toParent: nil)
+        profileVc.view.removeFromSuperview()
+        profileVc.didMove(toParent: nil)
         homeVc.title = "Note"
         
         settingVc.view.removeFromSuperview()
@@ -136,7 +136,6 @@ extension ContainerViewController: MenuViewControllerDelegate {
         helpDeskVc.view.removeFromSuperview()
         helpDeskVc.didMove(toParent: nil)
         homeVc.title = "Note"
-        
     }
     
     func addReminder() {
@@ -156,8 +155,11 @@ extension ContainerViewController: MenuViewControllerDelegate {
         homeVc.title = vc.title
     }
     
-    func addDeleted() {
-        let vc = deletedVc
+    func addProfile() {
+        let vc = profileVc
+//        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: true, completion: nil)
+//        navigationController?.pushViewController(vc, animated: true)
         homeVc.addChild(vc)
         homeVc.view.addSubview(vc.view)
         vc.view.frame = view.frame
@@ -178,6 +180,5 @@ extension ContainerViewController: MenuViewControllerDelegate {
         homeVc.view.addSubview(vc.view)
         vc.view.frame = view.frame
         homeVc.title = vc.title
-
     }
 }

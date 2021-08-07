@@ -12,14 +12,13 @@ import FBSDKLoginKit
 class ViewController: UIViewController {
 
     var window: UIWindow?
-
+    
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var logInButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "newbg.jpg")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "signupview.jpg")!)
         setUpElements()
     }
     
@@ -29,7 +28,6 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
-        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,6 +40,7 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(sc, animated: true)
         
     }
+    
     @IBAction func loginTapped(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.logViewController) as! LogInViewController
         navigationController?.pushViewController(vc, animated: true)

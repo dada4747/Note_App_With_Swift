@@ -21,21 +21,17 @@ class LogInViewController: UIViewController, LoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setUpElements()
         btnFacebook.delegate = self
         btnFacebook.permissions = ["public_profile", "email"]
-      //  self.view.backgroundColor = UIColor(patternImage: UIImage(named: "newbg.jpg")!)
-
+        view.backgroundColor = Constants.greyColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
     }
     //method for login button for facebook login
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-    
         if error != nil {
             print(error?.localizedDescription as Any)
             return
@@ -48,7 +44,6 @@ class LogInViewController: UIViewController, LoginButtonDelegate {
             let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
             self.view.window?.rootViewController = homeViewController
             self.view.window?.makeKeyAndVisible()
-        
         }
     }
     //method for logout facebook default
@@ -57,19 +52,15 @@ class LogInViewController: UIViewController, LoginButtonDelegate {
     }
     
     func setUpElements() {
-        //hide the error bar
         errorLabel.alpha = 0
-        //style the elements
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(loginButton)
     }
-    
     //button for login with firebase email and password
     @IBAction func loginTapped(_ sender: Any) {
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 self.errorLabel.text = error!.localizedDescription
