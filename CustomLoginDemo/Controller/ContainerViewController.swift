@@ -157,13 +157,15 @@ extension ContainerViewController: MenuViewControllerDelegate {
     
     func addProfile() {
         let vc = profileVc
-//        vc.modalPresentationStyle = .fullScreen
-//        present(vc, animated: true, completion: nil)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
 //        navigationController?.pushViewController(vc, animated: true)
-        homeVc.addChild(vc)
-        homeVc.view.addSubview(vc.view)
-        vc.view.frame = view.frame
-        homeVc.title = vc.title
+
+        
+//        homeVc.addChild(vc)
+//        homeVc.view.addSubview(vc.view)
+//        vc.view.frame = view.frame
+//        homeVc.title = vc.title
     }
     
     func addSetting() {

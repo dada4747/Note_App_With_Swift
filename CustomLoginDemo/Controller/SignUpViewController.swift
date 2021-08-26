@@ -113,8 +113,9 @@ class SignUpViewController: UIViewController  {
                     let uid = result?.user.uid
 
                     print("===========================", uid!)
-                                let fileName = NSUUID().uuidString
-                                let storageRef = Storage.storage().reference(withPath: "profileImage/\(fileName)")
+                                let fileName = uid! // NSUUID().uuidString
+                    
+                    let storageRef = Storage.storage().reference(withPath: "profileImage/\(String(describing: fileName))")
                     
                                     storageRef.putData(imagedata, metadata: nil) { storageMetaData, error in
                                         if let e = error {
@@ -123,11 +124,16 @@ class SignUpViewController: UIViewController  {
                                         }
                                     }
                                     print("****************")
-                                    storageRef.downloadURL { url, error in
-                                        print("11111111")
-                                        guard let imageURl = url?.absoluteString else { return }
-                                        print("\(String(describing: imageURl))")
-                                    }
+//                                    storageRef.downloadURL { url, error in
+//                                        print("11111111")
+//                                        guard let imageURl = url?.absoluteString else { return }
+//                                        print("\(String(describing: imageURl))")
+//                                    }
+                    storageRef.downloadURL(completion: { url, error in
+                        if let imageURL = url?.absoluteString {
+                            print(imageURL)
+                        }
+                    })
                     
                     
                     
